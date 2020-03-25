@@ -1,24 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
+import NavBar from './components/NavBar'
+import PlatformComponent from './components/PlatformComponent';
+import Navs from './components/Nav'
+
 import './App.css';
+import FormFichaya from './FormFichaya';
+import Table from './components/Table';
+import Person from './components/Person';
+import Customer from './components/Customer';
+import Page1 from './components/page1';
+
+const style = {
+  display: 'flex',
+  position: "fixed",
+  width: "100%"
+}
 
 function App() {
+  const [bool, setBool] = React.useState(false)
+  React.useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300) {
+        setBool(true)
+      }else{
+        setBool(false)
+      }
+    })
+    return () => {
+      window.removeEventListener('scroll')
+    }
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <NavBar style={bool ? style : null} /> */}
+      <Navs />
+      <Table />
+      <PlatformComponent />
+      {/* <FormFichaya /> */}
+      <Person />
+      <Customer />
+      <Page1 />
     </div>
   );
 }
